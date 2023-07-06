@@ -1,0 +1,5 @@
+@font-face {
+  font-family: "infinity";
+  src: url("/fonts/madeinfinity_personaluse-thin-webfont.woff2") format("woff2"),
+    url("/fonts/madeinfinity_personaluse-thin-webfont.woff") format("woff");
+}
