@@ -1,5 +1,8 @@
 "use strict";
 
+// SELECT ELEMENTS
+
+const addBookBtn = document.querySelector(".add-book");
 let myLibrary = [];
 
 function Book(author, title, numPages, haveRead) {
