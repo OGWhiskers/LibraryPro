@@ -22,6 +22,15 @@ const title = document.getElementById("title");
 const pages = document.getElementById("pages");
 const read = document.getElementById("read");
 
+// DISPLAY CARD ELEMENTS :
+
+const displayAuthor = document.querySelector(".displayAuthor");
+const displayTitle = document.querySelector(".displayTitle");
+const displayPages = document.querySelector(".displayPages");
+const displayRead = document.querySelector(".displayRead");
+const displayAdd = document.querySelector(".add");
+const displayRemove = document.querySelector(".remove");
+
 let authorForm = "";
 let titleForm = "";
 let pagesForm = 0;
@@ -48,27 +57,10 @@ const escapeModal = (e) =>
 
 addBookBtn.addEventListener("click", toggleHidden);
 exitBtn.addEventListener("click", toggleHidden);
+addForm.addEventListener("click", toggleHidden);
 overlay.addEventListener("click", toggleHidden);
 document.addEventListener("keyup", escapeModal);
 
-// FORM SUBMITION:
-
-formCore.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  authorForm = author.value;
-  titleForm = title.value;
-  pagesForm = pages.value;
-  readForm = read.value;
-
-  const al = new Book(authorForm, titleForm, pagesForm, readForm);
-
-  console.log(al);
-
-  storeBookObj.call(Book, al);
-
-  console.log(myLibrary);
-});
 // Functionality:
 
 let myLibrary = [];
@@ -77,21 +69,55 @@ function Book(author, title, numPages, haveRead) {
   this.author = author;
   this.title = title;
   this.numPages = numPages;
-  this.haveRead = function () {
-    return true;
-  };
+  this.haveRead = Boolean(haveRead);
 }
-
-const al = new Book(authorForm, titleForm, pagesForm, readForm);
-
-console.log(al);
 
 function storeBookObj(obj) {
   myLibrary.push(obj);
 }
 
-storeBookObj.call(Book, al);
+// FORM SUBMITION:
 
-console.log(myLibrary);
+formCore.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-const displayLibrary = (myLibrary) => {};
+  authorForm = author.value;
+  titleForm = title.value;
+  pagesForm = Number(pages.value);
+  readForm = read.checked;
+
+  author.value = "";
+  title.value = "";
+  pages.value = "";
+  read.checked = false;
+
+  const currentBook = new Book(authorForm, titleForm, pagesForm, readForm);
+  console.log(currentBook);
+
+  storeBookObj.call(Book, currentBook);
+
+  displayLibrary(myLibrary);
+});
+
+let showAuthor = "";
+let showTitle = "";
+let showPages = "";
+let showRead = "";
+
+const displayLibrary = (myLibrary) => {
+  for (let i = 0; i < myLibrary.length; i++) {
+    showAuthor = myLibrary[i].author;
+    showTitle = myLibrary[i].title;
+    showPages = Number(myLibrary[i].numPages);
+    showRead = Boolean(myLibrary[i].haveRead);
+  }
+
+  displayAuthor.innerHTML = `${displayAuthor.textContent} ${showAuthor}`;
+
+  displayTitle.innerHTML = `${displayTitle.innerHTML} ${showTitle}`;
+
+  displayPages.innerHTML = `${displayPages.innerHTML} ${showTitle}`;
+
+  displayRead.innerHTML =
+    showRead == true ? `I have read this book` : `I have not read this book`;
+};

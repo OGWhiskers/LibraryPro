@@ -20,7 +20,7 @@
   backdrop-filter: blur(3px);
   z-index: 5;
 }
-/* Alternate between the two below: */
+
 .hidden {
   display: none;
   visibility: hidden;
@@ -43,22 +43,25 @@
   border: 1px solid #0f172a;
   cursor: pointer;
 }
-
 .add-btn {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-
-  transform: translate(-50%, -50%);
+  grid-row: 1;
+  grid-column: 3;
 }
 .add-book {
   padding: 10px;
-  width: 200%;
+  width: 100%;
   height: 55px;
-
+  background-color: white;
+  border-radius: 8px;
   font-size: 18px;
+  transition: 0.3s ease-in-out;
 
   cursor: pointer;
+}
+.add-book:hover {
+  background-color: #e4e4e7;
+  width: 105%;
+  height: 57px;
 }
 
 .signature {
@@ -156,4 +159,73 @@ form {
   position: relative;
   justify-self: flex-start;
   left: 5%;
+}
+
+/* DISPLAY CARD : */
+
+.main-content {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 80px repeat(5, 320px);
+
+  padding: 50px 100px;
+  gap: 20px;
+}
+.displayCard {
+  width: 100%;
+  height: 100%;
+
+  border: 1px solid #a8a29e;
+  border-radius: 8px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+
+  grid-row: 2/3;
+  grid-column: 1/2;
+}
+.displayAuthor,
+.displayTitle,
+.displayPages,
+.displayRead,
+.add,
+.remove {
+  align-self: center;
+  justify-self: center;
+  grid-column: 1/5;
+}
+.displayAuthor {
+  grid-row: 1;
+}
+.displayTitle {
+  grid-row: 2;
+}
+.displayPages {
+  grid-row: 3;
+}
+.displayRead {
+  grid-row: 4;
+}
+.add {
+  grid-row: 5;
+}
+.remove {
+  grid-row: 6;
+}
+
+.add,
+.remove {
+  width: 50%;
+  height: 35px;
+
+  border-radius: 8px;
+  background-color: white;
+}
+
+.add:hover,
+.remove:hover {
+  background-color: #e4e4e7;
+  width: 51%;
+  height: 37px;
 }
