@@ -98,7 +98,6 @@ formCore.addEventListener("submit", (e) => {
   author.value = "";
   title.value = "";
   pages.value = "";
-  read.checked = false;
 
   const currentBook = new Book(authorForm, titleForm, pagesForm, readForm);
   console.log(currentBook);
@@ -143,11 +142,25 @@ const displayLibrary = (myLibrary) => {
 
     let pRead = document.createElement("p");
     pRead.setAttribute("class", "displayRead");
+    pRead.textContent = read.checked
+      ? `You have read this book`
+      : `You havn't read this book`;
 
     let bAdd = document.createElement("button");
     bAdd.setAttribute("class", "add");
     bAdd.textContent = `Add`;
-    bAdd.addEventListener("click", () => {});
+    bAdd.addEventListener("click", () => {
+      if (read.checked) {
+        read.checked = false;
+        console.log(read.checked);
+      } else if (!read.checked) {
+        read.checked = true;
+        console.log(read.checked);
+      }
+      pRead.textContent = read.checked
+        ? `You have read this book`
+        : `You havn't read this book`;
+    });
 
     let bRemove = document.createElement("button");
     bRemove.setAttribute("class", "remove");
