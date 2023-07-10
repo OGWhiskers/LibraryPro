@@ -150,13 +150,8 @@ const displayLibrary = (myLibrary) => {
     bAdd.setAttribute("class", "add");
     bAdd.textContent = `Add`;
     bAdd.addEventListener("click", () => {
-      if (read.checked) {
-        read.checked = false;
-        console.log(read.checked);
-      } else if (!read.checked) {
-        read.checked = true;
-        console.log(read.checked);
-      }
+      read.checked ? (read.checked = false) : (read.checked = true);
+
       pRead.textContent = read.checked
         ? `You have read this book`
         : `You havn't read this book`;
