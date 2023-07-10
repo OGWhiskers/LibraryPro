@@ -113,95 +113,9 @@ let showTitle = "";
 let showPages = "";
 let showRead = "";
 
-/* <div class="displayCard">
-        <p class="displayAuthor">Author : </p>
-        <p class="displayTitle">Title : </p>
-        <p class="displayPages">Pages : </p>
-        <p class="displayRead">I have read this book</p>
-
-        <button class="add">Read</button>
-        <button class="remove">Remove</button>
-    </div>
-</div> */
-
-// const displayLibrary = (myLibrary) => {
-//   const createElements = (myLibrary) => {
-//     for (let i = 0; i < myLibrary.length; i++) {
-//       let div = document.createElement("div");
-//       div.classList.add(`displayCard${i}`);
-
-//       console.log(div);
-//       let pAuthor = document.createElement("p");
-//       pAuthor.classList.add("displayAuthor");
-
-//       let pTitle = document.createElement("p");
-//       pTitle.classList.add("displayTitle");
-
-//       let pPages = document.createElement("p");
-//       pPages.classList.add("displayPages");
-
-//       let pRead = document.createElement("p");
-//       pRead.classList.add("displayRead");
-
-//       let badd = document.createElement("button");
-//       badd.classList.add("add");
-
-//       let bRemove = document.createElement("button");
-//       bRemove.classList.add("remove");
-
-//       div.appendChild(pAuthor);
-//       div.appendChild(pTitle);
-//       div.appendChild(pPages);
-//       div.appendChild(pRead);
-//       div.appendChild(badd);
-//       div.appendChild(bRemove);
-//       console.log(div);
-//     }
-//   };
-
-//   console.log(pAuthor);
-
-//   for (let i = 0; i < myLibrary.length; i++) {
-//     showAuthor = myLibrary[i].author;
-//     showTitle = myLibrary[i].title;
-//     showPages = Number(myLibrary[i].numPages);
-//     showRead = Boolean(myLibrary[i].haveRead);
-//   }
-
-//   console.log(showAuthor);
-
-//   // RESET DEFAULT VALUES:
-
-//   // displayAuthor.textContent = "Author : ";
-//   // displayTitle.textContent = "Title : ";
-//   // displayPages.textContent = "Pages : ";
-
-//   // // ADD CONTENT TO SCREEN:
-
-//   // displayAuthor.textContent = `${displayAuthor.textContent} ${showAuthor}`;
-//   // displayTitle.textContent = `${displayTitle.textContent} ${showTitle}`;
-//   // displayPages.textContent = `${displayPages.textContent} ${showPages}`;
-//   // displayRead.textContent =
-//   //   showRead == true ? `I have read this book` : `I have not read this book`;
-
-//   // console.log(myLibrary);
-
-//   // // Should add all library objects :
-//   // mainContentArea.appendChild();
-// };
-
-// <!-- <div class="displayCard">
-//         <p class="displayAuthor">Author : </p>
-//         <p class="displayTitle">Title : </p>
-//         <p class="displayPages">Pages : </p>
-//         <p class="displayRead">I have read this book</p>
-
-//         <button class="add">Read</button>
-//         <button class="remove">Remove</button>
-//       </div>
-//       </div> -->
 const displayLibrary = (myLibrary) => {
-  // MAKE FUNC THAT TAKES OBJ AND CREATES ELEMENTS WITH THAT INFO
+  // RESET MY LIBRARY TO AVOID DUPLICATES:
+
   while (displayArea.firstChild) {
     displayArea.removeChild(displayArea.lastChild);
   }
@@ -233,10 +147,12 @@ const displayLibrary = (myLibrary) => {
     let bAdd = document.createElement("button");
     bAdd.setAttribute("class", "add");
     bAdd.textContent = `Add`;
+    bAdd.addEventListener("click", () => {});
 
     let bRemove = document.createElement("button");
     bRemove.setAttribute("class", "remove");
     bRemove.textContent = `Remove`;
+    bRemove.addEventListener("click", () => {});
 
     Maindiv.appendChild(pAuthor);
     Maindiv.appendChild(pTitle);
@@ -248,12 +164,8 @@ const displayLibrary = (myLibrary) => {
     tree.appendChild(Maindiv);
     console.log(Maindiv);
     displayArea.appendChild(tree);
-    // console.log(obj.author);
-    // console.log(obj.title);
-    // console.log(obj.numPages);
-    // console.log(obj.haveRead);
   };
-  // Loop through myLibrary
+
   for (let i = 0; i < myLibrary.length; i++) {
     createElement(myLibrary[i]);
   }
