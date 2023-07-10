@@ -14,8 +14,9 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 200%;
 
+  margin: 0;
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(3px);
   z-index: 5;
@@ -64,12 +65,10 @@
   height: 57px;
 }
 
-.signature {
-  position: absolute;
-  top: 97%;
-  left: 45%;
+.footer {
+  display: flex;
+  justify-content: center;
 }
-
 a {
   text-decoration: none;
 }
@@ -171,9 +170,19 @@ form {
   padding: 50px 100px;
   gap: 20px;
 }
+
+.display {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(186px, 1fr));
+  grid-template-rows: repeat(6, 320px);
+  gap: 80px;
+
+  grid-column: 1/6;
+  grid-row: 2/7;
+}
 .displayCard {
-  width: 100%;
-  height: 100%;
+  width: 230px;
+  height: 300px;
 
   border: 1px solid #a8a29e;
   border-radius: 8px;
@@ -181,9 +190,6 @@ form {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(7, 1fr);
-
-  grid-row: 2/3;
-  grid-column: 1/2;
 }
 .displayAuthor,
 .displayTitle,

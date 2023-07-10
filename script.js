@@ -30,6 +30,7 @@ const displayPages = document.querySelector(".displayPages");
 const displayRead = document.querySelector(".displayRead");
 const displayAdd = document.querySelector(".add");
 const displayRemove = document.querySelector(".remove");
+const displayArea = document.querySelector(".display");
 
 let authorForm = "";
 let titleForm = "";
@@ -39,7 +40,15 @@ let readForm = true;
 // DESIGN:
 
 const toggleHidden = () => {
-  let arr = [addBookBtn, footer, exitBtn, formCore, overlay, formModal];
+  let arr = [
+    addBookBtn,
+    footer,
+    exitBtn,
+    formCore,
+    overlay,
+    formModal,
+    displayArea,
+  ];
 
   for (let i = 0; i < arr.length; i++) {
     arr[i].classList.contains("hidden")
@@ -104,20 +113,150 @@ let showTitle = "";
 let showPages = "";
 let showRead = "";
 
+/* <div class="displayCard">
+        <p class="displayAuthor">Author : </p>
+        <p class="displayTitle">Title : </p>
+        <p class="displayPages">Pages : </p>
+        <p class="displayRead">I have read this book</p>
+
+        <button class="add">Read</button>
+        <button class="remove">Remove</button>
+    </div>
+</div> */
+
+// const displayLibrary = (myLibrary) => {
+//   const createElements = (myLibrary) => {
+//     for (let i = 0; i < myLibrary.length; i++) {
+//       let div = document.createElement("div");
+//       div.classList.add(`displayCard${i}`);
+
+//       console.log(div);
+//       let pAuthor = document.createElement("p");
+//       pAuthor.classList.add("displayAuthor");
+
+//       let pTitle = document.createElement("p");
+//       pTitle.classList.add("displayTitle");
+
+//       let pPages = document.createElement("p");
+//       pPages.classList.add("displayPages");
+
+//       let pRead = document.createElement("p");
+//       pRead.classList.add("displayRead");
+
+//       let badd = document.createElement("button");
+//       badd.classList.add("add");
+
+//       let bRemove = document.createElement("button");
+//       bRemove.classList.add("remove");
+
+//       div.appendChild(pAuthor);
+//       div.appendChild(pTitle);
+//       div.appendChild(pPages);
+//       div.appendChild(pRead);
+//       div.appendChild(badd);
+//       div.appendChild(bRemove);
+//       console.log(div);
+//     }
+//   };
+
+//   console.log(pAuthor);
+
+//   for (let i = 0; i < myLibrary.length; i++) {
+//     showAuthor = myLibrary[i].author;
+//     showTitle = myLibrary[i].title;
+//     showPages = Number(myLibrary[i].numPages);
+//     showRead = Boolean(myLibrary[i].haveRead);
+//   }
+
+//   console.log(showAuthor);
+
+//   // RESET DEFAULT VALUES:
+
+//   // displayAuthor.textContent = "Author : ";
+//   // displayTitle.textContent = "Title : ";
+//   // displayPages.textContent = "Pages : ";
+
+//   // // ADD CONTENT TO SCREEN:
+
+//   // displayAuthor.textContent = `${displayAuthor.textContent} ${showAuthor}`;
+//   // displayTitle.textContent = `${displayTitle.textContent} ${showTitle}`;
+//   // displayPages.textContent = `${displayPages.textContent} ${showPages}`;
+//   // displayRead.textContent =
+//   //   showRead == true ? `I have read this book` : `I have not read this book`;
+
+//   // console.log(myLibrary);
+
+//   // // Should add all library objects :
+//   // mainContentArea.appendChild();
+// };
+
+// <!-- <div class="displayCard">
+//         <p class="displayAuthor">Author : </p>
+//         <p class="displayTitle">Title : </p>
+//         <p class="displayPages">Pages : </p>
+//         <p class="displayRead">I have read this book</p>
+
+//         <button class="add">Read</button>
+//         <button class="remove">Remove</button>
+//       </div>
+//       </div> -->
 const displayLibrary = (myLibrary) => {
-  for (let i = 0; i < myLibrary.length; i++) {
-    showAuthor = myLibrary[i].author;
-    showTitle = myLibrary[i].title;
-    showPages = Number(myLibrary[i].numPages);
-    showRead = Boolean(myLibrary[i].haveRead);
+  // MAKE FUNC THAT TAKES OBJ AND CREATES ELEMENTS WITH THAT INFO
+  while (displayArea.firstChild) {
+    displayArea.removeChild(displayArea.lastChild);
   }
 
-  displayAuthor.innerHTML = `${displayAuthor.textContent} ${showAuthor}`;
+  const createElement = (obj) => {
+    let tree = document.createDocumentFragment();
 
-  displayTitle.innerHTML = `${displayTitle.innerHTML} ${showTitle}`;
+    // MAIN DIV :
+    let Maindiv = document.createElement("div");
+    Maindiv.setAttribute("class", "displayCard");
 
-  displayPages.innerHTML = `${displayPages.innerHTML} ${showTitle}`;
+    // P ELEMENTS:
 
-  displayRead.innerHTML =
-    showRead == true ? `I have read this book` : `I have not read this book`;
+    let pAuthor = document.createElement("p");
+    pAuthor.setAttribute("class", "displayAuthor");
+    pAuthor.textContent = `Author : ${obj.author}`;
+
+    let pTitle = document.createElement("p");
+    pTitle.setAttribute("class", "displayTitle");
+    pTitle.textContent = `Title : ${obj.title}`;
+
+    let pPages = document.createElement("p");
+    pPages.setAttribute("class", "displayPages");
+    pPages.textContent = `Pages : ${obj.numPages}`;
+
+    let pRead = document.createElement("p");
+    pRead.setAttribute("class", "displayRead");
+
+    let bAdd = document.createElement("button");
+    bAdd.setAttribute("class", "add");
+    bAdd.textContent = `Add`;
+
+    let bRemove = document.createElement("button");
+    bRemove.setAttribute("class", "remove");
+    bRemove.textContent = `Remove`;
+
+    Maindiv.appendChild(pAuthor);
+    Maindiv.appendChild(pTitle);
+    Maindiv.appendChild(pPages);
+    Maindiv.appendChild(pRead);
+    Maindiv.appendChild(bAdd);
+    Maindiv.appendChild(bRemove);
+
+    tree.appendChild(Maindiv);
+    console.log(Maindiv);
+    displayArea.appendChild(tree);
+    // console.log(obj.author);
+    // console.log(obj.title);
+    // console.log(obj.numPages);
+    // console.log(obj.haveRead);
+  };
+  // Loop through myLibrary
+  for (let i = 0; i < myLibrary.length; i++) {
+    createElement(myLibrary[i]);
+  }
 };
+
+displayLibrary(myLibrary);
