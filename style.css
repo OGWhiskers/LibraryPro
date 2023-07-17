@@ -196,7 +196,7 @@ form {
 .displayPages,
 .displayRead,
 .add,
-.remove {
+#remove {
   align-self: center;
   justify-self: center;
   grid-column: 1/5;
@@ -216,12 +216,12 @@ form {
 .add {
   grid-row: 5;
 }
-.remove {
+#remove {
   grid-row: 6;
 }
 
 .add,
-.remove {
+#remove {
   width: 50%;
   height: 35px;
 
@@ -230,7 +230,7 @@ form {
 }
 
 .add:hover,
-.remove:hover {
+#remove:hover {
   background-color: #e4e4e7;
   width: 51%;
   height: 37px;

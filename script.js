@@ -100,7 +100,6 @@ formCore.addEventListener("submit", (e) => {
   pages.value = "";
 
   const currentBook = new Book(authorForm, titleForm, pagesForm, readForm);
-  console.log(currentBook);
 
   storeBookObj.call(Book, currentBook);
 
@@ -119,7 +118,10 @@ const displayLibrary = (myLibrary) => {
     displayArea.removeChild(displayArea.lastChild);
   }
 
+  // CREATE ELEMENTS :
+
   const createElement = (obj) => {
+    console.log(obj);
     let tree = document.createDocumentFragment();
 
     // MAIN DIV :
@@ -151,16 +153,14 @@ const displayLibrary = (myLibrary) => {
     bAdd.textContent = `Add`;
     bAdd.addEventListener("click", () => {
       read.checked ? (read.checked = false) : (read.checked = true);
-
       pRead.textContent = read.checked
         ? `You have read this book`
         : `You havn't read this book`;
     });
 
     let bRemove = document.createElement("button");
-    bRemove.setAttribute("class", "remove");
+    bRemove.setAttribute("id", "remove");
     bRemove.textContent = `Remove`;
-    bRemove.addEventListener("click", () => {});
 
     Maindiv.appendChild(pAuthor);
     Maindiv.appendChild(pTitle);
@@ -170,7 +170,6 @@ const displayLibrary = (myLibrary) => {
     Maindiv.appendChild(bRemove);
 
     tree.appendChild(Maindiv);
-    console.log(Maindiv);
     displayArea.appendChild(tree);
   };
 
